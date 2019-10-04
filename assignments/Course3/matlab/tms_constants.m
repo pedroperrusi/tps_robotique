@@ -17,10 +17,10 @@ s0 = pi/3;
 Cs0 = cos(s0);
 Ss0 = sin(s0);
 % Joint 1 and Joint 2
-s1 = 2*pi/3; 
+s1 = pi/2; 
 Cs1 = cos(s1);
 Ss1 = sin(s1);
 % Joint 2 and Joint 3
-s2 = pi/3; 
+s2 = pi/2; 
 Cs2 = cos(s2);
 Ss2 = sin(s2);

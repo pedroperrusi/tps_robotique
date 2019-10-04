@@ -1,4 +1,4 @@
-function plot_tms( q, pT, rr, l3 )
+function plot_tms( q, pT, rr, l3, line1, line2)
 %PLOT_ROBOT Draw robot axis for a given joint state q
 %   Receives the joint state q, the head center position pT,
 %   the robot sphere radius, the end effector length l3 and
@@ -55,6 +55,21 @@ hold on
 axis([0 xT+1.5*rr,yT-1.5*rr,yT+1.5*rr,0,zT+2*rr])
 xlabel('x');ylabel('y');zlabel('z')
 
+% Plot head
+colormap([1, 0.75, 0.79])
+[x,y,z]=sphere;
+
+surf(xT+rh*x,rh*y,zT+rh*z)
+
+alpha(0.4)
+shading interp
+
+
+box on
+grid on
+view([0,-1,0]);
+rotate3d on
+
 line([0,xT],[0 yT],[0,zT],'LineWidth',2,'LineStyle','--','Color','k')
 
 plot3(xT,yT,zT,'bo','MarkerSize',5, 'MarkerFaceColor','r')
@@ -63,8 +78,8 @@ plot3(xT-rr*Tb2(1,3),yT-rr*Tb2(2,3),zT-rr*Tb2(3,3),'co','MarkerSize',12, 'Marker
 plot3(xT-rr*Tb3(1,3),yT-rr*Tb3(2,3),zT-rr*Tb3(3,3),'co','MarkerSize',12, 'MarkerFaceColor','k') 
 plot3(xT-rr*Tb3(1,3),yT-rr*Tb3(2,3),zT-rr*Tb3(3,3),'bo','MarkerSize',15)
 
-circular_arc(pT,rr,0,s1,Tb1,'r-')
-circular_arc(pT,rr,0,s2,Tb2,'y-')
+circular_arc(pT,rr,0,s1,Tb1,line1)
+circular_arc(pT,rr,0,s2,Tb2,line2)
 line([xT+(q3-l3)*Tb3(1,3) xT+(q3)*Tb3(1,3)], ...
     [yT+(q3-l3)*Tb3(2,3) yT+(q3)*Tb3(2,3)], ...
     [zT+(q3-l3)*Tb3(3,3) zT+(q3)*Tb3(3,3)],...
