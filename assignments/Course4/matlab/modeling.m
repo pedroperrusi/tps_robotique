@@ -31,6 +31,7 @@ Tb0=[Rb0,pb0;0,0,0,1]; % transformation matrix
 %%%%%%%%%%%%%% FKM %
              
 q=[pi/2*(1-2*rand(1)),pi/2*(1-2*rand(1)),rh*(1-2*rand(1))];
+% q = [0 0 0];
 disp('********Configuration**********')
 
 if ( (le(q(3),rh-rr) || ge(q(3),rh)) == 1 )
@@ -77,11 +78,37 @@ disp('')
 disp('**********Jacobian**************')
 
 % call the jacobian function, that should provide two matrices
-% [J,Jg]=jacobian(q)
+[J,Jg] = jacobian(q);
 
 % Find a way to debug the Jacobian and check your solutions
 
-disp('')
+disp('Jacobian:')
+disp(J)
+
+disp('Jacobian applied to q:')
+disp(J * q')
+
+disp('We check if the jacobian is valid for a similar configuration.')
+
+epsi = 1e-4;
+epsi = [epsi epsi epsi];
+disp('delta q:')
+disp(epsi)
+dq = (q + epsi);
+
+disp('FKM position:')
+[~,dpos] = fkm(dq);
+disp(dpos)
+
+disp('Jacobian estimate: ')
+epos = pos + (J * epsi')';
+disp(epos)
+
+disp('Etimation difference')
+diff = epos - dpos;
+disp(diff)
+
+
 disp('**********End Jacobian**************')
 
 %%%%%%%%%%%%%% PLOTS %%%%%%%%%%%%%%
