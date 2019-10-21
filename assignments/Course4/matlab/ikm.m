@@ -18,9 +18,9 @@ else
 
     % some precuations with numerical rounding
     if (C2>1)
-        C2=1
+        C2=1;
     else if (C2<-1)
-            C2=-1
+            C2=-1;
         end
     end
 

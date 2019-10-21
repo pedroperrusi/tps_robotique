@@ -114,3 +114,5 @@ disp('**********End Jacobian**************')
 %%%%%%%%%%%%%% PLOTS %%%%%%%%%%%%%%
 
 draw_scene
+
+pause
